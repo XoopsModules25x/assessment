@@ -62,7 +62,7 @@ xoops_cp_header();
 //     echo _AM_ASSESSMENT_REQUERIMENTOS;
 //
 //} else {
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 //   include_once(XOOPS_ROOT_PATH."/Frameworks/xoops_version.php");
 //   include_once(XOOPS_ROOT_PATH."/class/xoopseditor/xoops_version.php");
 //   if ((XOOPS_FRAMEWORKS_VERSION<floatval(1.10))||(XOOPS_FRAMEWORKS_XOOPSEDITOR_VERSION<floatval(1.10))) {
@@ -146,9 +146,26 @@ function listarprovas()
             <input type="hidden" value="' . $prova->getVar('cod_prova', 's') . '" name="cod_prova" id="cod_prova">
             <input type="image" src="' . $pathIcon16 . '/editcopy.png" alt="' . _AM_ASSESSMENT_CLONE . '" title="' . _AM_ASSESSMENT_CLONE . '">
             </form></td>';
-            $x .= '<td width="50"><a href="main.php?op=resultados_prova&amp;cod_prova=' . $prova->getVar('cod_prova', 's') . '"><img src="' . $pathIcon16 . '/view.png" alt="' . _AM_ASSESSMENT_VERRESULT . '" title="' . _AM_ASSESSMENT_VERRESULT . '"style="border-color:#E6E6E6"></a></td>';
-            $x .= '<td width="50"><form action="excluirprova.php" method="post">' . $GLOBALS['xoopsSecurity']->getTokenHTML() . '<input type="image" src="' . $pathIcon16 . '/delete.png" alt="' . _AM_ASSESSMENT_EXCLUIRPROVAS . '" title="' . _AM_ASSESSMENT_EXCLUIRPROVAS
-                  . '" /><input type="hidden" value="' . $prova->getVar('cod_prova', 's') . '" name="cod_prova" id="cod_prova"></form></td></tr>';
+            $x .= '<td width="50"><a href="main.php?op=resultados_prova&amp;cod_prova='
+                  . $prova->getVar('cod_prova', 's')
+                  . '"><img src="'
+                  . $pathIcon16
+                  . '/view.png" alt="'
+                  . _AM_ASSESSMENT_VERRESULT
+                  . '" title="'
+                  . _AM_ASSESSMENT_VERRESULT
+                  . '"style="border-color:#E6E6E6"></a></td>';
+            $x .= '<td width="50"><form action="excluirprova.php" method="post">'
+                  . $GLOBALS['xoopsSecurity']->getTokenHTML()
+                  . '<input type="image" src="'
+                  . $pathIcon16
+                  . '/delete.png" alt="'
+                  . _AM_ASSESSMENT_EXCLUIRPROVAS
+                  . '" title="'
+                  . _AM_ASSESSMENT_EXCLUIRPROVAS
+                  . '" /><input type="hidden" value="'
+                  . $prova->getVar('cod_prova', 's')
+                  . '" name="cod_prova" id="cod_prova"></form></td></tr>';
             echo $x;
         }
         /**
@@ -313,8 +330,22 @@ function listarResultados()
         $estatisticas = $fabrica_de_resultados->stats($cod_prova);
 
         echo "<table class='outer' width='100%'><tr><th colspan='2'>" . _AM_ASSESSMENT_STATS . ' </th></tr>';
-        echo '<tr><td class="odd"><img src="../assets/images/stats.png" title="' . _AM_ASSESSMENT_STATS . '" alt="' . _AM_ASSESSMENT_STATS . '">' . '</td<td class="odd">' . _AM_ASSESSMENT_QTDRESULT . ':' . $estatisticas['qtd'] . _AM_ASSESSMENT_NOTAMAX . $estatisticas['max'] . _AM_ASSESSMENT_NOTAMIN
-             . $estatisticas['min'] . _AM_ASSESSMENT_MEDIA . $estatisticas['media'] . ' </td></tr>';
+        echo '<tr><td class="odd"><img src="../assets/images/stats.png" title="'
+             . _AM_ASSESSMENT_STATS
+             . '" alt="'
+             . _AM_ASSESSMENT_STATS
+             . '">'
+             . '</td<td class="odd">'
+             . _AM_ASSESSMENT_QTDRESULT
+             . ':'
+             . $estatisticas['qtd']
+             . _AM_ASSESSMENT_NOTAMAX
+             . $estatisticas['max']
+             . _AM_ASSESSMENT_NOTAMIN
+             . $estatisticas['min']
+             . _AM_ASSESSMENT_MEDIA
+             . $estatisticas['media']
+             . ' </td></tr>';
         echo '</table>';
 
         $barra_navegacao = new XoopsPageNav($total_items, $xoopsModuleConfig['qtditens'], $start, 'start', 'op=' . $_GET['op']);
@@ -331,9 +362,23 @@ function listarResultados()
             if ($resultado->getVar('terminou') == 1) {
                 $terminoutexto = _AM_ASSESSMENT_TERMINADA;
             }
-            $x =
-                '<tr><td> ' . _AM_ASSESSMENT_NOMEALUNO . ' ' . $uname . '<br /> ' . _AM_ASSESSMENT_DATA . ' <strong>' . $data_fim . '</strong><br />' . _AM_ASSESSMENT_CODPROVA . '<a href="main.php?op=editar_prova&cod_prova=' . $cod_prova_atual . '">' . $cod_prova_atual . '</a>  ' . $terminoutexto
-                . '</td>';
+            $x = '<tr><td> '
+                 . _AM_ASSESSMENT_NOMEALUNO
+                 . ' '
+                 . $uname
+                 . '<br /> '
+                 . _AM_ASSESSMENT_DATA
+                 . ' <strong>'
+                 . $data_fim
+                 . '</strong><br />'
+                 . _AM_ASSESSMENT_CODPROVA
+                 . '<a href="main.php?op=editar_prova&cod_prova='
+                 . $cod_prova_atual
+                 . '">'
+                 . $cod_prova_atual
+                 . '</a>  '
+                 . $terminoutexto
+                 . '</td>';
             $x .= '<td width="50"><a href="main.php?op=editar_resultado&amp;cod_resultado=' . $cod_resultado . '"><img src="' . $pathIcon16 . '/view.png" alt=""></a></td>';
             $x .= '</tr>';
             echo $x;
@@ -367,8 +412,17 @@ function listarperguntas()
         $x = "<tr><td class='odd'>" . $pergunta->getVar('titulo', 's');
         $x .= '</td><td width="50" class="odd"><a href="main.php?op=editar_pergunta&amp;cod_pergunta=' . $pergunta->getVar('cod_pergunta', 's');
         $x .= '"><img src="' . $pathIcon16 . '/edit.png" alt="' . _AM_ASSESSMENT_EDITARPERGUNTAS . '" title="' . _AM_ASSESSMENT_EDITARPERGUNTAS . '"></a></td>';
-        $x .= '<td class="odd" width="50"><form action="excluirpergunta.php" method="post">' . $GLOBALS['xoopsSecurity']->getTokenHTML() . '<input type="image" src="' . $pathIcon16 . '/delete.png" alt="' . _AM_ASSESSMENT_EXCLUIRPERGUNTAS . '" title="' . _AM_ASSESSMENT_EXCLUIRPERGUNTAS
-              . '" /><input type="hidden" value="' . $pergunta->getVar('cod_pergunta', 's') . '" name="cod_pergunta" id="cod_pergunta"></form></td></tr>';
+        $x .= '<td class="odd" width="50"><form action="excluirpergunta.php" method="post">'
+              . $GLOBALS['xoopsSecurity']->getTokenHTML()
+              . '<input type="image" src="'
+              . $pathIcon16
+              . '/delete.png" alt="'
+              . _AM_ASSESSMENT_EXCLUIRPERGUNTAS
+              . '" title="'
+              . _AM_ASSESSMENT_EXCLUIRPERGUNTAS
+              . '" /><input type="hidden" value="'
+              . $pergunta->getVar('cod_pergunta', 's')
+              . '" name="cod_pergunta" id="cod_pergunta"></form></td></tr>';
         echo $x;
     }
     echo '</table>';
@@ -460,8 +514,19 @@ function listarDocumentos()
             $x .= '<a href="main.php?op=editar_documento&amp;cod_documento=' . $documento->getVar('cod_documento', 's');
             $x .= '"><img src="' . $pathIcon16 . '/edit.png" alt="' . _AM_ASSESSMENT_EDITARDOC . '" title="' . _AM_ASSESSMENT_EDITARDOC . '"></a><br /></td>';
             //$x.= '<td class="odd" width="50"><a href="main.php?op=resultados_prova&amp;cod_documento='.$documento->getVar("cod_documento", "s").'"><img src="../assets/images/detalhe.gif" alt="Ver Resultados" style="border-color:#E6E6E6"></a></td>';
-            $x .= '<td class="odd" width="50"><form action="excluirdocumento.php" method="post">' . $GLOBALS['xoopsSecurity']->getTokenHTML() . '<input type="image" src="' . $pathIcon16 . '/delete.png" alt="' . _AM_ASSESSMENT_EXCLUIRDOC . '"  title="' . _AM_ASSESSMENT_EXCLUIRDOC
-                  . '"/><input type="hidden" value="' . $documento->getVar('cod_documento', 's') . '" name="cod_documento" id="cod_documento"><input type="hidden" value="' . $documento->getVar('cod_prova', 's') . '" name="cod_prova" id="cod_prova"></form></td></tr>';
+            $x .= '<td class="odd" width="50"><form action="excluirdocumento.php" method="post">'
+                  . $GLOBALS['xoopsSecurity']->getTokenHTML()
+                  . '<input type="image" src="'
+                  . $pathIcon16
+                  . '/delete.png" alt="'
+                  . _AM_ASSESSMENT_EXCLUIRDOC
+                  . '"  title="'
+                  . _AM_ASSESSMENT_EXCLUIRDOC
+                  . '"/><input type="hidden" value="'
+                  . $documento->getVar('cod_documento', 's')
+                  . '" name="cod_documento" id="cod_documento"><input type="hidden" value="'
+                  . $documento->getVar('cod_prova', 's')
+                  . '" name="cod_prova" id="cod_prova"></form></td></tr>';
             echo $x;
         }
         echo '</table>';

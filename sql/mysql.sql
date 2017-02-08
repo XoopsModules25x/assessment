@@ -108,7 +108,7 @@ VALUES
       'This test consists of 10 questions, each will have 5 answers of which only one is correct. Pay attention to details and don\t rush. When done, wait for the results - they will be sent to you by email or they can be found here on the Assessment webpage.\r\n\r\n
       You have 10 minutes to finish the test, after that time the program will finish your test.\r\n\r\n
       Good Luck',
-      '600', '1,2', '1', '1999-11-30 00:00:00', '2015-12-31 00:00:00');
+      '600', '1,2', '1', '1999-11-30 00:00:00', '2020-12-31 00:00:00');
 
 -- Extraindo dados da tabela `assessment_respostas`
 

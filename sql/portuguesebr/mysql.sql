@@ -12,12 +12,13 @@ CREATE TABLE assessment_perguntas (
   ordem          INT(11)      NOT NULL DEFAULT '0',
   PRIMARY KEY (cod_pergunta)
 )
-  ENGINE =MyISAM
-  DEFAULT CHARSET =utf8
-  AUTO_INCREMENT =1;
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;
 
 CREATE TABLE `assessment_provas` (
-  `cod_prova`        INT(11)      NOT NULL AUTO_INCREMENT COMMENT 'Chave Primária',
+  `cod_prova`        INT(11)      NOT NULL AUTO_INCREMENT
+  COMMENT 'Chave Primária',
   `data_criacao`     DATE         NOT NULL,
   `data_update`      DATE         NOT NULL,
   `titulo`           VARCHAR(255) NOT NULL,
@@ -30,9 +31,9 @@ CREATE TABLE `assessment_provas` (
   `data_fim`         DATETIME     NOT NULL,
   PRIMARY KEY (`cod_prova`)
 )
-  ENGINE =MyISAM
-  DEFAULT CHARSET =utf8
-  AUTO_INCREMENT =1;
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;
 
 CREATE TABLE `assessment_respostas` (
   `cod_resposta`     INT(11)      NOT NULL AUTO_INCREMENT,
@@ -45,9 +46,9 @@ CREATE TABLE `assessment_respostas` (
   `isativa`          TINYINT(1)   NOT NULL,
   PRIMARY KEY (`cod_resposta`)
 )
-  ENGINE =MyISAM
-  DEFAULT CHARSET =utf8
-  AUTO_INCREMENT =1;
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;
 
 
 CREATE TABLE `assessment_resultados` (
@@ -65,9 +66,9 @@ CREATE TABLE `assessment_resultados` (
   `fechada`       INT(1)      NOT NULL,
   PRIMARY KEY (`cod_resultado`)
 )
-  ENGINE =MyISAM
+  ENGINE = MyISAM
   DEFAULT CHARACTER SET utf8
-  AUTO_INCREMENT =1;
+  AUTO_INCREMENT = 1;
 
 CREATE TABLE `assessment_documentos` (
   `cod_documento`  INT(11)      NOT NULL AUTO_INCREMENT,
@@ -81,39 +82,37 @@ CREATE TABLE `assessment_documentos` (
   `html`           INT(11)      NOT NULL,
   PRIMARY KEY (`cod_documento`)
 )
-  ENGINE =MyISAM
+  ENGINE = MyISAM
   DEFAULT CHARACTER SET utf8
-  AUTO_INCREMENT =3;
+  AUTO_INCREMENT = 3;
 
 
 INSERT INTO `assessment_perguntas` (`cod_pergunta`, `cod_prova`, `titulo`, `data_criacao`, `data_update`, `uid_elaborador`) VALUES
-(1, 1, 'Qual a capital do Brasil?', '2007-03-15', '2007-03-15', '1'),
-(2, 1, 'Qual a capital da Inglaterra?', '2007-03-15', '2007-03-15', '1'),
-(3, 1, 'Qual a capital da Italia', '2007-03-15', '2007-03-15', '1'),
-(4, 1, 'Qual a capital da França', '2007-03-15', '2007-03-15', '1'),
-(5, 1, 'Qual a capital da Suiça', '2007-03-15', '2007-03-15', '1'),
-(6, 1, 'Qual a capital de Portugal', '2007-03-15', '2007-03-15', '1'),
-(7, 1, 'Qual a capital da Espanha?', '2007-03-15', '2007-03-15', '1'),
-(8, 1, 'Qual a capital da Argentina', '2007-03-15', '2007-03-15', '1'),
-(9, 1, 'Qual a capital dos Estados Unidos?', '2007-03-15', '2007-03-15', '1'),
-(10, 1, 'Qual a capital da Grécia', '2007-03-15', '2007-03-15', '1');
-
+  (1, 1, 'Qual a capital do Brasil?', '2007-03-15', '2007-03-15', '1'),
+  (2, 1, 'Qual a capital da Inglaterra?', '2007-03-15', '2007-03-15', '1'),
+  (3, 1, 'Qual a capital da Italia', '2007-03-15', '2007-03-15', '1'),
+  (4, 1, 'Qual a capital da França', '2007-03-15', '2007-03-15', '1'),
+  (5, 1, 'Qual a capital da Suiça', '2007-03-15', '2007-03-15', '1'),
+  (6, 1, 'Qual a capital de Portugal', '2007-03-15', '2007-03-15', '1'),
+  (7, 1, 'Qual a capital da Espanha?', '2007-03-15', '2007-03-15', '1'),
+  (8, 1, 'Qual a capital da Argentina', '2007-03-15', '2007-03-15', '1'),
+  (9, 1, 'Qual a capital dos Estados Unidos?', '2007-03-15', '2007-03-15', '1'),
+  (10, 1, 'Qual a capital da Grécia', '2007-03-15', '2007-03-15', '1');
 
 -- Extraindo dados da tabela `assessment_provas`
 
 
 INSERT INTO `assessment_provas` (`cod_prova`, `data_criacao`, `data_update`, `titulo`, `descricao`, `instrucoes`, `tempo`, `acesso`, `uid_elaboradores`, `data_inicio`, `data_fim`)
-  VALUES
+VALUES
   (1, '2007-03-15', '2007-03-15', 'PROVA DE GEOGRAFIA MARÇO 2007', 'Prova de geografia sobre as capitais dos países do mundo',
-   'Esta prova é composta de 10 questões, cada uma terá 5 respostas sendo que apenas uma está correta. Preste atenção aos peguinhas. Quando terminar aguarde o resultado que lhe será enviado por email e poderá ser consultado aqui na página de assessment.\r\n\r\nVocê tem 10 minutos para terminar a prova , após este tempo o programa encerrará sozinho a sua prova.\r\n\r\nBoa Sorte',
-   '600', '1,2', '1', '1999-11-30 00:00:00', '2015-12-31 00:00:00');
-
+      'Esta prova é composta de 10 questões, cada uma terá 5 respostas sendo que apenas uma está correta. Preste atenção aos peguinhas. Quando terminar aguarde o resultado que lhe será enviado por email e poderá ser consultado aqui na página de assessment.\r\n\r\nVocê tem 10 minutos para terminar a prova , após este tempo o programa encerrará sozinho a sua prova.\r\n\r\nBoa Sorte',
+      '600', '1,2', '1', '1999-11-30 00:00:00', '2015-12-31 00:00:00');
 
 -- Extraindo dados da tabela `assessment_respostas`
 
 
 INSERT INTO `assessment_respostas` (`cod_resposta`, `cod_pergunta`, `titulo`, `iscerta`, `data_criacao`, `data_update`, `uid_elaboradores`, `isativa`)
-  VALUES
+VALUES
   (1, 1, 'Brasília', 1, '2007-03-15', '2007-03-15', '', 0),
   (2, 1, 'Buenos Aires', 0, '2007-03-15', '2007-03-15', '', 0),
   (3, 1, 'Tokio', 0, '2007-03-15', '2007-03-15', '', 0),

@@ -22,12 +22,12 @@
         <legend><{$lang_confirmacao}></legend>
         <h3><{$lang_alerta}></h3>
 
-        <form action="../fecharprova.php" method="post">
+        <form action="fecharprova.php" method="post">
             <input name="cod_resultado" type="hidden" value="<{$cod_resultado}>"/>
 
             <input type=submit value="<{$lang_confirmasim}>"><{$campo_token}>
         </form>
-        <form action="../perguntas.php?" method="get">
+        <form action="perguntas.php?" method="get">
             <{$campo_token}>
             <input name="cod_prova" type="hidden" value="<{$cod_prova}>"/>
             <input name="start" type="hidden" value="0"/>

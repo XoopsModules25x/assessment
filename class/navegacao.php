@@ -40,7 +40,7 @@ class NavegadorProva extends XoopsPageNav
      *
      * @return string
      */
-    public function renderImageNav($cod_perguntas, $cod_perguntas_respondidas, $offset = 1)
+    public function renderImageNav($cod_perguntas = null, $cod_perguntas_respondidas = null, $offset = 1)
     {
         global $xoopsModule;
         $vazio     = array();
@@ -58,7 +58,7 @@ class NavegadorProva extends XoopsPageNav
             if ($prev >= 0) {
                 $ret .= '<td align="right"><a href="' . $this->url . $prev . '"><img src="assets/images/anterior.gif" border="0" alt="' . _MA_ASSESSMENT_ANTERIOR . '" title="' . _MA_ASSESSMENT_ANTERIOR . '"></a></td> ';
             }
-            $ret .= '<td align="center"><table><tr>';
+            $ret  .= '<td align="center"><table><tr>';
             $next = $this->current + $this->perpage;
 
             $counter      = 1;
@@ -67,9 +67,19 @@ class NavegadorProva extends XoopsPageNav
                 $cod_pergunta_atual = $cod_perguntas[$counter - 1];
 
                 if (in_array($cod_pergunta_atual, $cod_perguntas_respondidas)) {
-                    $ret .= '<td  valign="center" style="height=20px; text-align:center; background:url(assets/images/feita.jpg); background-repeat:no-repeat;background-position:center;"><a href="' . $this->url . (($counter - 1) * $this->perpage) . '">' . $counter . '</a></td>';
+                    $ret .= '<td  valign="center" style="height=20px; text-align:center; background:url(assets/images/feita.jpg); background-repeat:no-repeat;background-position:center;"><a href="'
+                            . $this->url
+                            . (($counter - 1) * $this->perpage)
+                            . '">'
+                            . $counter
+                            . '</a></td>';
                 } else {
-                    $ret .= '<td  valign="center" style="height=20px; text-align:center; background:url(assets/images/naofeita.jpg); background-repeat:no-repeat;background-position:center;"><a href="' . $this->url . (($counter - 1) * $this->perpage) . '">' . $counter . '</a></td>';
+                    $ret .= '<td  valign="center" style="height=20px; text-align:center; background:url(assets/images/naofeita.jpg); background-repeat:no-repeat;background-position:center;"><a href="'
+                            . $this->url
+                            . (($counter - 1) * $this->perpage)
+                            . '">'
+                            . $counter
+                            . '</a></td>';
                 }
 
                 if ((($counter % $offset) == 0) & $counter != $total_pages - 1) {

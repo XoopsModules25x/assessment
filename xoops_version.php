@@ -21,29 +21,30 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
-$modversion['name']        = _MI_ASSESSMENT_NAME;
-$modversion['version']     = 1.1;
-$modversion['description'] = _MI_ASSESSMENT_DESC;
-$modversion['credits']     = 'Equipe Simcity Brasil';
-$modversion['author']      = 'Marcello Brandao - suico';
-$modversion['help']        = 'page=help';
-$modversion['license']     = 'GNU GPL 2.0 or later';
-$modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html';
-$modversion['official']    = 0;
-$modversion['image']       = 'assets/images/logo_module.png';
-$modversion['dirname']     = basename(__DIR__);
+
+$modversion['version']       = 1.1;
+$modversion['module_status'] = 'Beta 2';
+$modversion['release_date']  = '2017/02/07';
+$modversion['name']          = _MI_ASSESSMENT_NAME;
+$modversion['description']   = _MI_ASSESSMENT_DESC;
+$modversion['credits']       = 'Equipe Simcity Brasil';
+$modversion['author']        = 'Marcello Brandao - suico';
+$modversion['help']          = 'page=help';
+$modversion['license']       = 'GNU GPL 2.0 or later';
+$modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
+$modversion['official']      = 0;
+$modversion['image']         = 'assets/images/logo_module.png';
+$modversion['dirname']       = basename(__DIR__);
 
 $modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
 $modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
 $modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
 //about
-$modversion['release_date']        = '2013/10/25';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS';
-$modversion['module_status']       = 'Beta 1';
-$modversion['min_php']             = '5.3.7';
-$modversion['min_xoops']           = '2.5.6';
-$modversion['min_admin']           = '1.1';
+$modversion['min_php']             = '5.5';
+$modversion['min_xoops']           = '2.5.8';
+$modversion['min_admin']           = '1.2';
 $modversion['min_db']              = array(
     'mysql'  => '5.0.7',
     'mysqli' => '5.0.7'

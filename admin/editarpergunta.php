@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_perguntas.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 include dirname(__DIR__) . '/class/assessment_respostas.php';
@@ -53,7 +53,7 @@ $ordem = $_POST['campo_ordem'];
 
 $uid_elaborador       = $xoopsUser->getVar('uid');
 $fabrica_de_perguntas = new Xoopsassessment_perguntasHandler($xoopsDB);
-$pergunta             =& $fabrica_de_perguntas->create(false);
+$pergunta             = $fabrica_de_perguntas->create(false);
 $pergunta->load($cod_pergunta);
 $pergunta->setVar('titulo', $titulo);
 $pergunta->setVar('uid_elaboradores', $uid_elaborador);
@@ -62,14 +62,14 @@ $cod_prova = $pergunta->getVar('cod_prova');
 
 if ($fabrica_de_perguntas->insert($pergunta)) {
     $fabrica_de_respostas = new Xoopsassessment_respostasHandler($xoopsDB);
-    $resposta_certa       =& $fabrica_de_respostas->create(false);
+    $resposta_certa       = $fabrica_de_respostas->create(false);
     $resposta_certa->load($cod_resposta_certa);
     $resposta_certa->setVar('titulo', $tit_resposta_certa);
     $resposta_certa->setVar('uid_elaboradores', $uid_elaborador);
     $fabrica_de_respostas->insert($resposta_certa);
     $i = 1;
     foreach ($cod_resposta_errada as $cod) {
-        $resposta_errada =& $fabrica_de_respostas->create(false);
+        $resposta_errada = $fabrica_de_respostas->create(false);
         $resposta_errada->load($cod);
         $resposta_errada->setVar('titulo', $tit_resposta_errada[$i]);
         $resposta_errada->setVar('uid_elaboradores', $uid_elaborador);

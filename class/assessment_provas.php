@@ -38,6 +38,7 @@ class assessment_provas extends XoopsObject
     public $db;
 
     // constructor
+
     /**
      * @param null $id
      * @return assessment_provas
@@ -46,8 +47,8 @@ class assessment_provas extends XoopsObject
     {
         $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar('cod_prova', XOBJ_DTYPE_INT, null, false, 10);
-        $this->initVar('data_criacao', XOBJ_DTYPE_TXTBOX, null, false);
-        $this->initVar('data_update', XOBJ_DTYPE_TXTBOX, null, false);
+        $this->initVar('data_criacao', XOBJ_DTYPE_TXTBOX, '2017-01-01', false);
+        $this->initVar('data_update', XOBJ_DTYPE_TXTBOX, '2017-01-01', false);
         $this->initVar('titulo', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('descricao', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('instrucoes', XOBJ_DTYPE_TXTBOX, null, false);
@@ -182,6 +183,7 @@ class assessment_provas extends XoopsObject
 // -------------------------------------------------------------------------
 // ------------------assessment_provas user handler class -------------------
 // -------------------------------------------------------------------------
+
 /**
  * assessment_provashandler class.
  * This class provides simple mecanisme for assessment_provas object
@@ -204,6 +206,7 @@ class Xoopsassessment_provasHandler extends XoopsPersistableObjectHandler
         else {
             $assessment_provas->unsetNew();
         }
+
         //fim do hack para consertar
         return $assessment_provas;
     }
@@ -259,17 +262,19 @@ class Xoopsassessment_provasHandler extends XoopsPersistableObjectHandler
         if ($assessment_provas->isNew()) {
             // ajout/modification d'un assessment_provas
             $assessment_provas = new assessment_provas();
-            $format             = 'INSERT INTO %s (cod_prova, data_criacao, data_update, titulo, descricao, instrucoes, acesso, tempo, uid_elaboradores, data_inicio, data_fim)';
-            $format .= 'VALUES (%u, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)';
-            $sql   = sprintf($format, $this->db->prefix('assessment_provas'), $cod_prova, $this->db->quoteString($data_criacao), $this->db->quoteString($data_update), $this->db->quoteString($titulo), $this->db->quoteString($descricao), $this->db->quoteString($instrucoes),
-                             $this->db->quoteString($acesso), $this->db->quoteString($tempo), $this->db->quoteString($uid_elaboradores), $this->db->quoteString($data_inicio), $this->db->quoteString($data_fim));
-            $force = true;
+            $format            = 'INSERT INTO %s (cod_prova, data_criacao, data_update, titulo, descricao, instrucoes, acesso, tempo, uid_elaboradores, data_inicio, data_fim)';
+            $format            .= 'VALUES (%u, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)';
+            $sql               = sprintf($format, $this->db->prefix('assessment_provas'), $cod_prova, $this->db->quoteString($data_criacao), $this->db->quoteString($data_update), $this->db->quoteString($titulo), $this->db->quoteString($descricao),
+                                         $this->db->quoteString($instrucoes), $this->db->quoteString($acesso), $this->db->quoteString($tempo), $this->db->quoteString($uid_elaboradores), $this->db->quoteString($data_inicio),
+                                         $this->db->quoteString($data_fim));
+            $force             = true;
         } else {
             $format = 'UPDATE %s SET ';
             $format .= 'cod_prova=%u, data_criacao=%s, data_update=%s, titulo=%s, descricao=%s, instrucoes=%s, acesso=%s, tempo=%s, uid_elaboradores=%s, data_inicio=%s, data_fim=%s';
             $format .= ' WHERE cod_prova = %u';
-            $sql = sprintf($format, $this->db->prefix('assessment_provas'), $cod_prova, $this->db->quoteString($data_criacao), $this->db->quoteString($data_update), $this->db->quoteString($titulo), $this->db->quoteString($descricao), $this->db->quoteString($instrucoes),
-                           $this->db->quoteString($acesso), $this->db->quoteString($tempo), $this->db->quoteString($uid_elaboradores), $this->db->quoteString($data_inicio), $this->db->quoteString($data_fim), $cod_prova);
+            $sql    = sprintf($format, $this->db->prefix('assessment_provas'), $cod_prova, $this->db->quoteString($data_criacao), $this->db->quoteString($data_update), $this->db->quoteString($titulo), $this->db->quoteString($descricao),
+                              $this->db->quoteString($instrucoes), $this->db->quoteString($acesso), $this->db->quoteString($tempo), $this->db->quoteString($uid_elaboradores), $this->db->quoteString($data_inicio), $this->db->quoteString($data_fim),
+                              $cod_prova);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -318,7 +323,7 @@ class Xoopsassessment_provasHandler extends XoopsPersistableObjectHandler
      */
     public function clonarProva($cod_prova)
     {
-        $prova =& $this->get($cod_prova);
+        $prova = $this->get($cod_prova);
 
         $prova->setVar('titulo', _AM_ASSESSMENT_CLONE . $prova->getVar('titulo'));
         $prova->setVar('cod_prova', 0);
@@ -359,7 +364,7 @@ class Xoopsassessment_provasHandler extends XoopsPersistableObjectHandler
             if (!$id_as_key) {
                 $ret[] =& $assessment_provas;
             } else {
-                $ret[$myrow['cod_prova']] =& $assessment_provas;
+                $ret[$myrow['cod_prova']] = $assessment_provas;
             }
             unset($assessment_provas);
         }
