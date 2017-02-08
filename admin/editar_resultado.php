@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_perguntas.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 include dirname(__DIR__) . '/class/assessment_respostas.php';
@@ -52,7 +52,7 @@ $resultado->setVar('terminou', 1);
 $resultado->setVar('fechada', 1);
 
 $resultado->unsetNew();
-$notificationHandler =& xoops_getHandler('notification');
+$notificationHandler = xoops_getHandler('notification');
 $notificationHandler->triggerEvent('prova', $cod_resultado, 'prova_corrigida');
 if ($fabrica_de_resultados->insert($resultado)) {
     redirect_header('index.php', 2, _AM_ASSESSMENT_SUCESSO);

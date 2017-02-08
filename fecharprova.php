@@ -69,7 +69,7 @@ $fabrica_perguntas  = new Xoopsassessment_perguntasHandler($xoopsDB);
 /**
  * Buscando na F�brica o resultado (padr�o de projeto factory com DAO)
  */
-$resultado =& $fabrica_resultados->create(false);
+$resultado = $fabrica_resultados->create(false);
 $resultado = $fabrica_resultados->get($cod_resultado);
 
 /**

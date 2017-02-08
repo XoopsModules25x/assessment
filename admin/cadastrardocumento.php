@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_documentos.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 global $xoopsModuleConfig;
@@ -51,7 +51,7 @@ if ($xoopsModuleConfig['editorpadrao'] === 'dhtmlext' || $xoopsModuleConfig['edi
 }
 
 $fabrica_de_documentos = new Xoopsassessment_documentosHandler($xoopsDB);
-$documento             =& $fabrica_de_documentos->create();
+$documento             = $fabrica_de_documentos->create();
 if ($perguntas !== '') {
     $documento->setVar('cods_perguntas', implode(',', $perguntas));
 }

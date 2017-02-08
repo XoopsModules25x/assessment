@@ -36,6 +36,7 @@ class assessment_resultados extends XoopsObject
     public $db;
 
     // constructor
+
     /**
      * @param null $id
      * @return assessment_resultados
@@ -244,6 +245,7 @@ class assessment_resultados extends XoopsObject
 // -------------------------------------------------------------------------
 // ------------------assessment_resultados user handler class -------------------
 // -------------------------------------------------------------------------
+
 /**
  * assessment_resultadoshandler class.
  * This class provides simple mecanisme for assessment_resultados object
@@ -321,17 +323,17 @@ class Xoopsassessment_resultadosHandler extends XoopsPersistableObjectHandler
         if ($assessment_resultados->isNew()) {
             // ajout/modification d'un assessment_resultados
             $assessment_resultados = new assessment_resultados();
-            $format                 = 'INSERT INTO %s (cod_resultado, cod_prova, uid_aluno, data_inicio, data_fim, resp_certas, resp_erradas, nota_final, nivel, obs, fechada, terminou)';
-            $format .= 'VALUES (%u, %u, %u, %s, %s, %s, %s, %u, %s, %s, %u, %u)';
-            $sql   = sprintf($format, $this->db->prefix('assessment_resultados'), $cod_resultado, $cod_prova, $uid_aluno//,$this->db->quoteString($data_inicio)
+            $format                = 'INSERT INTO %s (cod_resultado, cod_prova, uid_aluno, data_inicio, data_fim, resp_certas, resp_erradas, nota_final, nivel, obs, fechada, terminou)';
+            $format                .= 'VALUES (%u, %u, %u, %s, %s, %s, %s, %u, %s, %s, %u, %u)';
+            $sql                   = sprintf($format, $this->db->prefix('assessment_resultados'), $cod_resultado, $cod_prova, $uid_aluno//,$this->db->quoteString($data_inicio)
                 , $now, $now, $this->db->quoteString($resp_certas), $this->db->quoteString($resp_erradas), $nota_final, $this->db->quoteString($nivel), $this->db->quoteString($obs), $fechada, $terminou);
-            $force = true;
+            $force                 = true;
         } else {
             $format = 'UPDATE %s SET ';
             $format .= 'cod_resultado=%u, cod_prova=%u, uid_aluno=%u, data_inicio=%s, data_fim=%s, resp_certas=%s, resp_erradas=%s, nota_final=%u, nivel=%s, obs=%s, fechada=%u, terminou=%u';
             $format .= ' WHERE cod_resultado = %u';
-            $sql = sprintf($format, $this->db->prefix('assessment_resultados'), $cod_resultado, $cod_prova, $uid_aluno, $this->db->quoteString($data_inicio), $now, $this->db->quoteString($resp_certas), $this->db->quoteString($resp_erradas), $nota_final, $this->db->quoteString($nivel),
-                           $this->db->quoteString($obs), $fechada, $terminou, $cod_resultado);
+            $sql    = sprintf($format, $this->db->prefix('assessment_resultados'), $cod_resultado, $cod_prova, $uid_aluno, $this->db->quoteString($data_inicio), $now, $this->db->quoteString($resp_certas), $this->db->quoteString($resp_erradas),
+                              $nota_final, $this->db->quoteString($nivel), $this->db->quoteString($obs), $fechada, $terminou, $cod_resultado);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -406,9 +408,9 @@ class Xoopsassessment_resultadosHandler extends XoopsPersistableObjectHandler
             $assessment_resultados = new assessment_resultados();
             $assessment_resultados->assignVars($myrow);
             if (!$id_as_key) {
-                $ret[] =& $assessment_resultados;
+                $ret[] = $assessment_resultados;
             } else {
-                $ret[$myrow['cod_resultado']] =& $assessment_resultados;
+                $ret[$myrow['cod_resultado']] = $assessment_resultados;
             }
             unset($assessment_resultados);
         }
@@ -498,14 +500,14 @@ class Xoopsassessment_resultadosHandler extends XoopsPersistableObjectHandler
 
         foreach ($vetor_resp_certas as $resp) {
             $detalhe_resp_certa = explode('-', $resp);
-            $texto_resp_certas .= '<a href=main.php?op=ver_detalhe_pergunta&cod_pergunta=' . $detalhe_resp_certa[0] . '&cod_resposta=' . $detalhe_resp_certa[1] . '>' . $detalhe_resp_certa[0] . ' </a> ';
+            $texto_resp_certas  .= '<a href=main.php?op=ver_detalhe_pergunta&cod_pergunta=' . $detalhe_resp_certa[0] . '&cod_resposta=' . $detalhe_resp_certa[1] . '>' . $detalhe_resp_certa[0] . ' </a> ';
         }
         $texto_resp_erradas = _AM_ASSESSMENT_PERGDETALHES . ' <br />';
         $vetor_resp_erradas = explode(',', $resp_erradas);
 
         foreach ($vetor_resp_erradas as $resp2) {
             $detalhe_resp_errada = explode('-', $resp2);
-            $texto_resp_erradas .= '<a href=main.php?op=ver_detalhe_pergunta&cod_pergunta=' . $detalhe_resp_errada[0] . '&cod_resposta=' . $detalhe_resp_errada[1] . '>' . $detalhe_resp_errada[0] . ' </a> ';
+            $texto_resp_erradas  .= '<a href=main.php?op=ver_detalhe_pergunta&cod_pergunta=' . $detalhe_resp_errada[0] . '&cod_resposta=' . $detalhe_resp_errada[1] . '>' . $detalhe_resp_errada[0] . ' </a> ';
         }
 
         if ($vetor_resp_certas[0] == '') {
@@ -520,9 +522,26 @@ class Xoopsassessment_resultadosHandler extends XoopsPersistableObjectHandler
         $form                    = new XoopsThemeForm(_AM_ASSESSMENT_EDITAR . ' ' . _AM_ASSESSMENT_RESULTADO, 'form_resultado', $action, 'post', true);
         $campo_resp_certas       = new XoopsFormLabel(_AM_ASSESSMENT_RESPCERTAS, $texto_resp_certas);
         $campo_resp_erradas      = new XoopsFormLabel(_AM_ASSESSMENT_RESPERR, $texto_resp_erradas);
-        $campo_sugest_nota_final = new XoopsFormLabel(_AM_ASSESSMENT_SUGESTNOTA,
-                                                      $nota_sugest . '/100 (' . _AM_ASSESSMENT_ACERTOU . ' ' . $qtd_acertos . ' ' . _AM_ASSESSMENT_ERROU . ' ' . $qtd_erros . ' ' . _AM_ASSESSMENT_SEMREPONDER . ' ' . $qtd_branco . ' ' . _AM_ASSESSMENT_DEUMTOTALDE . ' ' . $qtd_perguntas . ' '
-                                                      . _AM_ASSESSMENT_PERGUNTAS . ' )');
+        $campo_sugest_nota_final = new XoopsFormLabel(_AM_ASSESSMENT_SUGESTNOTA, $nota_sugest
+                                                                                 . '/100 ('
+                                                                                 . _AM_ASSESSMENT_ACERTOU
+                                                                                 . ' '
+                                                                                 . $qtd_acertos
+                                                                                 . ' '
+                                                                                 . _AM_ASSESSMENT_ERROU
+                                                                                 . ' '
+                                                                                 . $qtd_erros
+                                                                                 . ' '
+                                                                                 . _AM_ASSESSMENT_SEMREPONDER
+                                                                                 . ' '
+                                                                                 . $qtd_branco
+                                                                                 . ' '
+                                                                                 . _AM_ASSESSMENT_DEUMTOTALDE
+                                                                                 . ' '
+                                                                                 . $qtd_perguntas
+                                                                                 . ' '
+                                                                                 . _AM_ASSESSMENT_PERGUNTAS
+                                                                                 . ' )');
         $campo_nota_final        = new XoopsFormText(_AM_ASSESSMENT_NOTAFINAL, 'campo_nota_final', 6, 10, $nota_final);
         $campo_nivel             = new XoopsFormText(_AM_ASSESSMENT_NIVEL, 'campo_nivel', 10, 20, $nivel);
         $campo_observacoes       = new XoopsFormTextArea(_AM_ASSESSMENT_OBS, 'campo_observacoes', $observacoes, 2, 50);

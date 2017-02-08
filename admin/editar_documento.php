@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_documentos.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 
@@ -49,7 +49,7 @@ if ($xoopsModuleConfig['editorpadrao'] == 'dhtmlext' || $xoopsModuleConfig['edit
 }
 
 $fabrica_de_documentos = new Xoopsassessment_documentosHandler($xoopsDB);
-$documento             =& $fabrica_de_documentos->create();
+$documento             = $fabrica_de_documentos->create();
 
 $documento->setVar('cods_perguntas', implode(',', $perguntas));
 $documento->setVar('titulo', $titulo);

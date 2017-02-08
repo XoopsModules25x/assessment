@@ -17,7 +17,7 @@
         <p>
 </div>
 <div id="inicio">
-    <form action="../preperguntas.php" method="post">
+    <form action="preperguntas.php" method="post">
         <{$campo_token}>
         <input name="cod_prova" id="cod_prova" type="hidden" value="<{$cod_prova}>"/>
         <input name="enviar" type="submit" value="<{$lang_comecar}>"/>

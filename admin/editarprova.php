@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_perguntas.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 
@@ -61,7 +61,7 @@ if ($data_hora_inicio_UNIX > $data_hora_fim_UNIX) {
                     }*/
 $uid_elaborador = $xoopsUser->getVar('uid');
 
-$prova =& $fabrica_de_provas->create(false);
+$prova = $fabrica_de_provas->create(false);
 $prova->load($cod_prova);
 $prova->setVar('descricao', $descricao);
 $prova->setVar('instrucoes', $instrucoes);
@@ -69,8 +69,8 @@ $prova->setVar('titulo', $titulo);
 $prova->setVar('tempo', $tempo);
 $prova->setVar('acesso', implode(',', $acesso));
 $prova->setVar('uid_elaboradores', $uid_elaborador);
-$prova->setVar('data_inicio', $data_hora_inicio_MYSQL);
-$prova->setVar('data_fim', $data_hora_fim_MYSQL);
+$prova->setVar('data_inicio', date('Y-m-d H:i:s', strtotime($data_hora_inicio_MYSQL)));
+$prova->setVar('data_fim', date('Y-m-d H:i:s', strtotime($data_hora_fim_MYSQL)));
 //$prova->unsetNew();
 
 //$prova->setVar("data_update",$agora);

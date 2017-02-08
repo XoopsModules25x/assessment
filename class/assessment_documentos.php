@@ -51,6 +51,7 @@ class assessment_documentos extends XoopsObject
     public $db;
 
     // constructor
+
     /**
      * @param null $id
      * @return assessment_documentos
@@ -136,6 +137,7 @@ class assessment_documentos extends XoopsObject
 // -------------------------------------------------------------------------
 // ------------------assessment_documentos user handler class -------------------
 // -------------------------------------------------------------------------
+
 /**
  * assessment_documentoshandler class.
  * This class provides simple mecanisme for assessment_documentos object
@@ -189,7 +191,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
      * insert a new assessment_documentos in the database
      *
      * @param XoopsObject $assessment_documentos reference to the {@link assessment_documentos} object
-     * @param  bool       $force                  flag to force the query execution despite security settings
+     * @param  bool       $force                 flag to force the query execution despite security settings
      *
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */
@@ -212,15 +214,17 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
         if ($assessment_documentos->isNew()) {
             // ajout/modification d'un assessment_documentos
             $assessment_documentos = new assessment_documentos();
-            $format                 = 'INSERT INTO %s (cod_documento, titulo, tipo, cod_prova, cods_perguntas, documento, uid_elaborador, fonte, html)';
-            $format .= 'VALUES (%u, %s, %u, %u, %s, %s, %u, %s, %u)';
-            $sql   = sprintf($format, $this->db->prefix('assessment_documentos'), $cod_documento, $this->db->quoteString($titulo), $tipo, $cod_prova, $this->db->quoteString($cods_perguntas), $this->db->quoteString($documento), $uid_elaborador, $this->db->quoteString($fonte), $html);
-            $force = true;
+            $format                = 'INSERT INTO %s (cod_documento, titulo, tipo, cod_prova, cods_perguntas, documento, uid_elaborador, fonte, html)';
+            $format                .= 'VALUES (%u, %s, %u, %u, %s, %s, %u, %s, %u)';
+            $sql                   = sprintf($format, $this->db->prefix('assessment_documentos'), $cod_documento, $this->db->quoteString($titulo), $tipo, $cod_prova, $this->db->quoteString($cods_perguntas), $this->db->quoteString($documento),
+                                             $uid_elaborador, $this->db->quoteString($fonte), $html);
+            $force                 = true;
         } else {
             $format = 'UPDATE %s SET ';
             $format .= 'cod_documento=%u, titulo=%s, tipo=%u, cod_prova=%u, cods_perguntas=%s, documento=%s, uid_elaborador=%u, fonte=%s, html=%u';
             $format .= ' WHERE cod_documento = %u';
-            $sql = sprintf($format, $this->db->prefix('assessment_documentos'), $cod_documento, $this->db->quoteString($titulo), $tipo, $cod_prova, $this->db->quoteString($cods_perguntas), $this->db->quoteString($documento), $uid_elaborador, $this->db->quoteString($fonte), $html, $cod_documento);
+            $sql    = sprintf($format, $this->db->prefix('assessment_documentos'), $cod_documento, $this->db->quoteString($titulo), $tipo, $cod_prova, $this->db->quoteString($cods_perguntas), $this->db->quoteString($documento), $uid_elaborador,
+                              $this->db->quoteString($fonte), $html, $cod_documento);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -308,13 +312,13 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
     /**
      * retrieve assessment_documentoss from the database
      *
-     * @param        $cod_prova
-     * @param        $cod_pergunta
+     * @param $cod_prova
+     * @param $cod_pergunta
+     * @return array array of <a href='psi_element://assessment_documentos'>assessment_documentos</a> objects
+     * objects
+     * @internal param object $criteria <a href='psi_element://CriteriaElement'>CriteriaElement</a> conditions to be met conditions to be met conditions to be met conditions to be met
+     * @internal param bool $id_as_key use the UID as key for the array?
      *
-     * @param object $criteria  {@link CriteriaElement} conditions to be met conditions to be met
-     * @param bool   $id_as_key use the UID as key for the array?
-     *
-     * @return array array of {@link assessment_documentos} objects
      */
     public function &getDocumentosProvaPergunta($cod_prova, $cod_pergunta)
     {
@@ -472,7 +476,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
     {
         global $xoopsDB, $xoopsUser, $xoopsModuleConfig;
 
-        $documento =& $this->get($cod_documento);
+        $documento = $this->get($cod_documento);
         $titulo    = $documento->getVar('titulo', 's');
         //$textodocumento = text_filter($documento->getVar('documento',"f"),true);
         $textodocumento               = $documento->getVar('documento', 'f');

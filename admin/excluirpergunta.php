@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_perguntas.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 include dirname(__DIR__) . '/class/assessment_respostas.php';

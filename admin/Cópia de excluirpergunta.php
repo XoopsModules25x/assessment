@@ -1,6 +1,6 @@
 <?php
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 include dirname(__DIR__) . '/class/assessment_perguntas.php';
 include dirname(__DIR__) . '/class/assessment_provas.php';
 include dirname(__DIR__) . '/class/assessment_respostas.php';

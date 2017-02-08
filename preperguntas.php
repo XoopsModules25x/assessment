@@ -81,7 +81,7 @@ $criteria->add($criteria_aluno);
  * cria o resultado, se sim informa que a prova est� em andamento j�
  */
 if ($fabrica_resultados->getCount($criteria) < 1) {
-    $resultado =& $fabrica_resultados->create();
+    $resultado = $fabrica_resultados->create();
     $resultado->setVar('uid_aluno', $uid);
     $resultado->setVar('cod_prova', $cod_prova);
     $fabrica_resultados->insert($resultado);

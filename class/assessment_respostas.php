@@ -36,6 +36,7 @@ class assessment_respostas extends XoopsObject
     public $db;
 
     // constructor
+
     /**
      * @param null $id
      * @return assessment_respostas
@@ -120,6 +121,7 @@ class assessment_respostas extends XoopsObject
 // -------------------------------------------------------------------------
 // ------------------assessment_respostas user handler class -------------------
 // -------------------------------------------------------------------------
+
 /**
  * assessment_respostashandler class.
  * This class provides simple mecanisme for assessment_respostas object
@@ -142,6 +144,7 @@ class Xoopsassessment_respostasHandler extends XoopsPersistableObjectHandler
         else {
             $assessment_respostas->unsetNew();
         }
+
         //fim do hack para consertar
         return $assessment_respostas;
     }
@@ -197,15 +200,15 @@ class Xoopsassessment_respostasHandler extends XoopsPersistableObjectHandler
         if ($assessment_respostas->isNew()) {
             // ajout/modification d'un assessment_respostas
             $assessment_respostas = new assessment_respostas();
-            $format                = 'INSERT INTO %s (cod_resposta, cod_pergunta, titulo, iscerta, data_criacao, data_update, uid_elaboradores, isativa)';
-            $format .= 'VALUES (%u, %u, %s, %u, %s, %s, %s, %u)';
-            $sql   = sprintf($format, $this->db->prefix('assessment_respostas'), $cod_resposta, $cod_pergunta, $this->db->quoteString($titulo), $iscerta, $now, $now, $this->db->quoteString($uid_elaboradores), $isativa);
-            $force = true;
+            $format               = 'INSERT INTO %s (cod_resposta, cod_pergunta, titulo, iscerta, data_criacao, data_update, uid_elaboradores, isativa)';
+            $format               .= 'VALUES (%u, %u, %s, %u, %s, %s, %s, %u)';
+            $sql                  = sprintf($format, $this->db->prefix('assessment_respostas'), $cod_resposta, $cod_pergunta, $this->db->quoteString($titulo), $iscerta, $now, $now, $this->db->quoteString($uid_elaboradores), $isativa);
+            $force                = true;
         } else {
             $format = 'UPDATE %s SET ';
             $format .= 'cod_resposta=%u, cod_pergunta=%u, titulo=%s, iscerta=%u, data_criacao=%s, data_update=%s, uid_elaboradores=%s, isativa=%u';
             $format .= ' WHERE cod_resposta = %u';
-            $sql = sprintf($format, $this->db->prefix('assessment_respostas'), $cod_resposta, $cod_pergunta, $this->db->quoteString($titulo), $iscerta, $now, $now, $this->db->quoteString($uid_elaboradores), $isativa, $cod_resposta);
+            $sql    = sprintf($format, $this->db->prefix('assessment_respostas'), $cod_resposta, $cod_pergunta, $this->db->quoteString($titulo), $iscerta, $now, $now, $this->db->quoteString($uid_elaboradores), $isativa, $cod_resposta);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -280,9 +283,9 @@ class Xoopsassessment_respostasHandler extends XoopsPersistableObjectHandler
             $assessment_respostas = new assessment_respostas();
             $assessment_respostas->assignVars($myrow);
             if (!$id_as_key) {
-                $ret[] =& $assessment_respostas;
+                $ret[] = $assessment_respostas;
             } else {
-                $ret[$myrow['cod_resposta']] =& $assessment_respostas;
+                $ret[$myrow['cod_resposta']] = $assessment_respostas;
             }
             unset($assessment_respostas);
         }

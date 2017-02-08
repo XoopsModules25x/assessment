@@ -50,7 +50,7 @@ include __DIR__ . '/class/assessment_perguntas.php';
 include __DIR__ . '/class/assessment_provas.php';
 include __DIR__ . '/class/assessment_respostas.php';
 include __DIR__ . '/class/assessment_resultados.php';
-include_once(XOOPS_ROOT_PATH . '/class/pagenav.php');
+include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 /**
  * Definindo arquivo de template da p�gina

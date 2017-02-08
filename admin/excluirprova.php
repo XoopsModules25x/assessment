@@ -42,7 +42,7 @@ include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
  * Arquivo que cont�m v�rias fun��es interessantes , principalmente a de
  * criar o cabe�alho do menu com as abinhas
  */
-include_once(XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php');
+include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
 
 /**
  * Inclus�es das classes do m�dulo
