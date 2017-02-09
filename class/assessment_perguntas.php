@@ -490,7 +490,7 @@ class Xoopsassessment_perguntasHandler extends XoopsPersistableObjectHandler
         $botao_enviar       = new XoopsFormButton('', 'botao_submit', _SUBMIT, 'submit');
         $campo_cod_pergunta = new XoopsFormHidden('cod_pergunta', $cod_pergunta);
         $campo_start        = new XoopsFormHidden('start', $start);
-        $campo_respostas    = new XoopsFormRadio(_MA_ASSESSMENT_RESPOSTA, 'cod_resposta');
+        $campo_respostas    = new XoopsFormRadio(_MA_ASSESSMENT_RESPOSTA, 'cod_resposta', '','<br/>');
         shuffle($respostas);
 
         $campo_respostas->setValue($param_cod_resposta);
