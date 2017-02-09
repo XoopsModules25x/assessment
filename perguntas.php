@@ -154,28 +154,28 @@ $resultado  = $resultados[0];
  * obs: cabe passar isso para dentro da classe resultado ou prova
  */
 $horaatual = time() - 18000;
-echo $horaatual . 'horaatual </br>';
+//echo $horaatual . 'horaatual </br>';
 $serverXX = abs((int)($GLOBALS['xoopsConfig']['server_TZ'] * 3600.0));
-echo $serverXX . 'server TZ </br>';
-echo 'Local: ' . date('r') . 'n<br />GMT: ' . gmdate('r') . '<br />';
+//echo $serverXX . 'server TZ </br>';
+//echo 'Local: ' . date('r') . 'n<br />GMT: ' . gmdate('r') . '<br />';
 
 $data_inicio_segundos = $fabrica_de_provas->dataMysql2dataUnix($resultado->getVar('data_inicio'));
-echo $data_inicio_segundos . 'data_inicio_segundos </br>';
+//echo $data_inicio_segundos . 'data_inicio_segundos </br>';
 
 $tempo_prova = $prova->getVar('tempo');
-echo $tempo_prova . 'tempo_prova   </br>';
+//echo $tempo_prova . 'tempo_prova   </br>';
 
 $tempo_restante = $fabrica_de_provas->converte_segundos(($data_inicio_segundos + $tempo_prova) - $horaatual, 'H');
-echo $tempo_restante . 'tempo_restante </br>';
-var_dump($tempo_restante);
+//echo $tempo_restante . 'tempo_restante </br>';
+//var_dump($tempo_restante);
 
 $tempo_gasto = $fabrica_de_provas->converte_segundos($horaatual - $data_inicio_segundos, 'H');
-echo $tempo_gasto . 'tempo_gasto  </br>';
-var_dump($$tempo_gasto);
+//echo $tempo_gasto . 'tempo_gasto  </br>';
+//var_dump($$tempo_gasto);
 
 $hora_fim_da_prova = $fabrica_de_provas->converte_segundos($data_inicio_segundos + $tempo_prova, 'H');
-echo $hora_fim_da_prova . 'hora_fim_da_prova  </br>';
-var_dump($hora_fim_da_prova);
+//echo $hora_fim_da_prova . 'hora_fim_da_prova  </br>';
+//var_dump($hora_fim_da_prova);
 /**
  * Verifica��o de tempo da prova: se estourar o tempo salvar o resultado e
  * avisar o aluno com a possibilidade de dar a nota direto pro aluno se assim
