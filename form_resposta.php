@@ -97,7 +97,7 @@ $criteria_resposta_certa->add($criteria_certa);
 /**
  * Pegando qual seria a resposta certa e em seguida seu c�digo
  */
-$respostacerta      =& $fabrica_respostas->getObjects($criteria_resposta_certa);
+$respostacerta      = $fabrica_respostas->getObjects($criteria_resposta_certa);
 $cod_resposta_certa = $respostacerta[0]->getVar('cod_resposta');
 
 /**
@@ -138,7 +138,7 @@ if (($qtd_perguntas - 1) == $start) {
  * buscamos as respostas que ele j� deu e o c�digo da
  * resposta antiga dele para esta pergunta
  */
-$resultados          =& $fabrica_resultados->getObjects($criteria);
+$resultados          = $fabrica_resultados->getObjects($criteria);
 $resultado           = $resultados[0];
 $respostascertas     = $resultado->getRespostasCertasAsArray();
 $respostaserradas    = $resultado->getRespostasErradasAsArray();

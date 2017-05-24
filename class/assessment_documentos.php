@@ -324,7 +324,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
     {
         $criteria         = new criteria('cod_prova', $cod_prova);
         $cod_documentos   = array();
-        $documentos_prova =& $this->getObjects($criteria);
+        $documentos_prova = $this->getObjects($criteria);
         $i                = 0;
         foreach ($documentos_prova as $documento_prova) {
             $cods_perguntas = explode(',', $documento_prova->getVar('cods_perguntas'));
@@ -411,7 +411,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
         $fabrica_de_perguntas = new Xoopsassessment_perguntasHandler($xoopsDB);
         $criteria             = new criteria('cod_prova', $cod_prova);
 
-        $vetor_perguntas =& $fabrica_de_perguntas->getObjects($criteria);
+        $vetor_perguntas = $fabrica_de_perguntas->getObjects($criteria);
         $campo_perguntas = new XoopsFormSelect(_AM_ASSESSMENT_PERGASSOC, 'campo_perguntas', null, 10, true);
 
         foreach ($vetor_perguntas as $pergunta) {
@@ -488,7 +488,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
         $fabrica_de_perguntas = new Xoopsassessment_perguntasHandler($xoopsDB);
         $criteria             = new criteria('cod_prova', $cod_prova);
 
-        $vetor_perguntas =& $fabrica_de_perguntas->getObjects($criteria);
+        $vetor_perguntas = $fabrica_de_perguntas->getObjects($criteria);
         $campo_perguntas = new XoopsFormSelect('Perguntas associadas', 'campo_perguntas', $vetor_perguntas_selecionadas, 10, true);
 
         foreach ($vetor_perguntas as $pergunta) {
@@ -548,7 +548,7 @@ class Xoopsassessment_documentosHandler extends XoopsPersistableObjectHandler
     {
         global $xoopsDB;
 
-        $documentos =& $this->getObjects($criteria);
+        $documentos = $this->getObjects($criteria);
         foreach ($documentos as $documento) {
             $documento->setVar('cod_prova', $cod_prova);
             $documento->setVar('cod_documento', 0);

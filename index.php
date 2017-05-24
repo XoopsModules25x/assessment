@@ -75,12 +75,12 @@ if (isset($_GET['start'])) {
 //$total_items = $fabrica_de_provas->getCount();
 
 //$vetor_provas = $fabrica_de_provas->getObjects($criteria);
-$vetor_provas     =& $fabrica_de_provas->getObjects();
+$vetor_provas     = $fabrica_de_provas->getObjects();
 $qtd_provas       = count($vetor_provas);
 $uid              = $xoopsUser->getVar('uid');
 $criteria_aluno   = new criteria('uid_aluno', $uid);
-$vetor_resultados =& $fabrica_de_resultados->getObjects($criteria_aluno);
-$vetor_perguntas  =& $fabrica_de_perguntas->getObjects();
+$vetor_resultados = $fabrica_de_resultados->getObjects($criteria_aluno);
+$vetor_perguntas  = $fabrica_de_perguntas->getObjects();
 //echo "<pre>";
 //print_r($vetor_resultados);
 $grupos = $xoopsUser->getGroups();

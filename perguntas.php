@@ -146,7 +146,7 @@ if ($qtd_resultados < 1) {
 /**
  * Buscando o objeto resultado desta prova deste aluno na f�brica
  */
-$resultados =& $fabrica_resultados->getObjects($criteria_compo);
+$resultados = $fabrica_resultados->getObjects($criteria_compo);
 $resultado  = $resultados[0];
 
 /**
@@ -198,7 +198,7 @@ $titulo_prova = $prova->getVar('titulo', 's');
  * buscando as perguntas da prova, depois separando
  * a nossa pergunta e enfim pegando o c�digo dela que vamos precisar
  */
-$perguntas    =& $fabrica_de_perguntas->getObjects($criteria_prova);
+$perguntas    = $fabrica_de_perguntas->getObjects($criteria_prova);
 $pergunta     = $perguntas[$start];
 $cod_pergunta = $pergunta->getVar('cod_pergunta');
 
@@ -215,7 +215,7 @@ $criteria_pergunta = new criteria('cod_pergunta', $cod_pergunta);
 /**
  * buscando as respostas a serem exibidas
  */
-$respostas =& $fabrica_de_respostas->getObjects($criteria_pergunta);
+$respostas = $fabrica_de_respostas->getObjects($criteria_pergunta);
 
 /**
  * buscar resposta anterior a esta pergunta caso
