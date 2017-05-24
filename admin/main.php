@@ -129,7 +129,7 @@ function listarprovas()
          * Caso exista ao menos uma prova então buscamos esta(s) prova(s)
          * na fábrica
          */
-        $vetor_provas =& $fabrica_de_provas->getObjects($criteria);
+        $vetor_provas = $fabrica_de_provas->getObjects($criteria);
         /**
          * Abre-se a tabela
          */
@@ -208,7 +208,7 @@ function verDetalhePergunta($cod_pergunta, $cod_resposta)
     /**
      * Buscando na fábrica as respostas e a pergunta
      */
-    $respostas =& $fabrica_de_respostas->getObjects($criteria);
+    $respostas = $fabrica_de_respostas->getObjects($criteria);
     $pergunta  = $fabrica_de_perguntas->get($cod_pergunta);
 
     /**
@@ -313,7 +313,7 @@ function listarResultados()
     /**
      * Buscando na fabrica os resultados (só os 5 que serão mostrados)
      */
-    $vetor_resultados =& $fabrica_de_resultados->getObjects($criteria_prova);
+    $vetor_resultados = $fabrica_de_resultados->getObjects($criteria_prova);
 
     /**
      * Mudança nos critérios para agora tirar o limiote de começo e de 5
@@ -349,7 +349,7 @@ function listarResultados()
         echo '</table>';
 
         $barra_navegacao = new XoopsPageNav($total_items, $xoopsModuleConfig['qtditens'], $start, 'start', 'op=' . $_GET['op']);
-        $prova           =& $fabrica_de_provas->getObjects($criteria_prova);
+        $prova           = $fabrica_de_provas->getObjects($criteria_prova);
         $titulo          = $prova[0]->getVar('titulo');
         echo "<table class='outer' width='100%'><tr><th colspan='2'>" . _AM_ASSESSMENT_LISTARESULTADOS . '</th></tr>';
         foreach ($vetor_resultados as $resultado) {
@@ -398,7 +398,7 @@ function listarperguntas()
     $criteria->setOrder('ASC');
     $criteria->setLimit($xoopsModuleConfig['qtditens']);
     $criteria->setStart($startper);
-    $vetor_perguntas =& $fabrica_de_perguntas->getObjects($criteria);
+    $vetor_perguntas = $fabrica_de_perguntas->getObjects($criteria);
     $criteria->setLimit('');
     $criteria->setStart(0);
     $total_items     = $fabrica_de_perguntas->getCount($criteria);
@@ -468,7 +468,7 @@ function editarpergunta()
     $criteria->setSort('cod_resposta');
     $criteria->setOrder('ASC');
     $fabrica_de_respostas = new Xoopsassessment_respostasHandler($xoopsDB);
-    $respostas            =& $fabrica_de_respostas->getObjects($criteria);
+    $respostas            = $fabrica_de_respostas->getObjects($criteria);
     $fabrica_de_perguntas = new Xoopsassessment_perguntasHandler($xoopsDB);
     $pergunta             = $fabrica_de_perguntas->get($cod_pergunta);
     $fabrica_de_perguntas->renderFormEditar('editarpergunta.php', $pergunta, $respostas);
@@ -503,7 +503,7 @@ function listarDocumentos()
         $criteria->setLimit($xoopsModuleConfig['qtditens']);
         $criteria->setStart($startdoc);
 
-        $vetor_documentos =& $fabrica_de_documentos->getObjects($criteria);
+        $vetor_documentos = $fabrica_de_documentos->getObjects($criteria);
 
         $barra_navegacao = new XoopsPageNav($total_items, $xoopsModuleConfig['qtditens'], $startdoc, 'startdoc', 'op=' . $_GET['op'] . '&' . 'cod_prova=' . $cod_prova);
 

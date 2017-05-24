@@ -532,7 +532,7 @@ class Xoopsassessment_perguntasHandler extends XoopsPersistableObjectHandler
     {
         global $xoopsDB;
         $fabrica_de_respostas = new Xoopsassessment_respostasHandler($xoopsDB);
-        $perguntas            =& $this->getObjects($criteria);
+        $perguntas            = $this->getObjects($criteria);
         foreach ($perguntas as $pergunta) {
             $cod_pergunta = $pergunta->getVar('cod_pergunta');
             $pergunta->setVar('cod_prova', $cod_prova);
@@ -542,7 +542,7 @@ class Xoopsassessment_perguntasHandler extends XoopsPersistableObjectHandler
             $cod_pergunta_clone = $xoopsDB->getInsertId();
 
             $criteria_pergunta = new Criteria('cod_pergunta', $cod_pergunta);
-            $respostas         =& $fabrica_de_respostas->getObjects($criteria_pergunta);
+            $respostas         = $fabrica_de_respostas->getObjects($criteria_pergunta);
 
             foreach ($respostas as $resposta) {
                 $resposta->setVar('cod_pergunta', $cod_pergunta_clone);

@@ -112,7 +112,7 @@ if ($segunda_vez == 1) {
      * Buscamos na f�brica as perguntas da prova, tiramos delas as respostas
      * exclu�mos as respostas
      */
-    $perguntas =& $fabrica_de_perguntas->getObjects($criteria);
+    $perguntas = $fabrica_de_perguntas->getObjects($criteria);
 
     foreach ($perguntas as $pergunta) {
         ++$i;

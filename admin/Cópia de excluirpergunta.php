@@ -13,7 +13,7 @@ $fabrica_de_perguntas = new Xoopsassessment_perguntasHandler($xoopsDB);
 $fabrica_de_provas    = new Xoopsassessment_provasHandler($xoopsDB);
 $fabrica_de_respostas = new Xoopsassessment_respostasHandler($xoopsDB);
 
-$perguntas =& $fabrica_de_perguntas->getObjects($criteria);
+$perguntas = $fabrica_de_perguntas->getObjects($criteria);
 
 foreach ($perguntas as $pergunta) {
     ++$i;
